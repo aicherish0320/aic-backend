@@ -12,3 +12,16 @@
 
 - 编程规范
 - Git 规范
+
+## ESLint 
+
+- 代码检测工具
+
+## prettier
+
+Prettier 可以在保存代码时，让我们的代码直接符合 ESLiint 标准
+
+- 代码格式化工具
+- 开箱即用
+- 直接集成到 vscode
+- 保存时，让代码直接符合 ESLint
