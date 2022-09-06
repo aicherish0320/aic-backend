@@ -7,22 +7,22 @@
       <!-- username -->
       <el-form-item>
         <span class="svg-container">
-          <svg-icon icon="https://res.lgdsunday.club/user.svg"></svg-icon>
+          <svg-icon icon="user"></svg-icon>
         </span>
         <el-input placeholder="username" name="username" type="text"></el-input>
       </el-form-item>
       <!-- password -->
       <el-form-item>
         <span class="svg-container">
-          <el-icon>
-            <Avatar />
-          </el-icon>
+          <span class="svg-container">
+            <svg-icon icon="password"></svg-icon>
+          </span>
         </span>
         <el-input placeholder="password" name="password"></el-input>
         <span class="show-pwd">
-          <el-icon>
-            <Avatar />
-          </el-icon>
+          <span class="svg-container">
+            <svg-icon icon="eye"></svg-icon>
+          </span>
         </span>
       </el-form-item>
       <!-- login btn -->
@@ -33,10 +33,7 @@
   </div>
 </template>
 
-<script setup>
-import { Avatar } from '@element-plus/icons'
-import SvgIcon from '@/components/SvgIcon/index.vue'
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 $bg: #2d3a4b;
