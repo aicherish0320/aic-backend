@@ -30,3 +30,11 @@ Prettier 可以在保存代码时，让我们的代码直接符合 ESLiint 标�
 
 - Commitizen
   - 当你使用 commitizen 进行代码提交时，commitizen 会提交你在提交时所有必须的提交字段
+- Git Hooks
+  - Git 在执行某个事件之前或之后进行一些额外其他的操作
+  - `pre-commit`，`git commit`执行前，它不接受任何参数，并且在获取提交日志消息并进行提交之前被调用；脚本`git commit`以非零状态退出会导致命令在创建提交之前中止
+  - `commit-msg`，`git commit`执行前，可用于将消息规范化为某种标准格式；还可用于在检查消息文件后拒绝提交
+- `husky`，`git hooks` 工具 
+- `commitlint`，用于检查提交信息
+- `pre-commit`，检测提交时代码规范
+- `lint-staged`，自动修复格式错误，它可以让你当前的代码检查，**只检查本次修改更新的代码，并在出现错误的时候，自动修复并且推送**
