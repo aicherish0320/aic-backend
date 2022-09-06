@@ -25,3 +25,8 @@ Prettier 可以在保存代码时，让我们的代码直接符合 ESLiint 标�
 - 开箱即用
 - 直接集成到 vscode
 - 保存时，让代码直接符合 ESLint
+
+## Git 提交规范
+
+- Commitizen
+  - 当你使用 commitizen 进行代码提交时，commitizen 会提交你在提交时所有必须的提交字段
