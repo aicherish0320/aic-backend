@@ -5,4 +5,9 @@ const service = axios.create({
   timeout: 5000
 })
 
+service.interceptors.request.use((config) => {
+  config.headers.icode = '34785B46B360B444'
+  return config
+})
+
 export default service
