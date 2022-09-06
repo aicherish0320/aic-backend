@@ -1,10 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-const routes = []
+/**
+ * 公开路由表
+ */
+const publicRotes = [
+  {
+    path: '/login',
+    component: () =>
+      import(/*webpackChunkName: 'loginView'*/ '@/views/login/index.vue')
+  }
+]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes: publicRotes
 })
 
 export default router
