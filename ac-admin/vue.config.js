@@ -4,7 +4,7 @@ const { defineConfig } = require('@vue/cli-service')
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
-console.log(' >>> ', resolve('src/icons'))
+
 module.exports = defineConfig({
   transpileDependencies: true,
   chainWebpack(config) {
