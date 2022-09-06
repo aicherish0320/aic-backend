@@ -14,15 +14,11 @@
       <!-- password -->
       <el-form-item>
         <span class="svg-container">
-          <span class="svg-container">
-            <svg-icon icon="password"></svg-icon>
-          </span>
+          <svg-icon icon="password"></svg-icon>
         </span>
         <el-input placeholder="password" name="password"></el-input>
         <span class="show-pwd">
-          <span class="svg-container">
-            <svg-icon icon="eye"></svg-icon>
-          </span>
+          <svg-icon icon="eye"></svg-icon>
         </span>
       </el-form-item>
       <!-- login btn -->
