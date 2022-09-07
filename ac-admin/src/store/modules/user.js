@@ -3,6 +3,7 @@ import { login, getUserInfo } from '@/api/sys'
 import { getItem, removeAllItem, setItem } from '@/utils/storage'
 import { TOKEN } from '@/constant/index'
 import router from '@/router'
+import { setTimeStamp } from '@/utils/auth'
 
 export default {
   namespaced: true,
@@ -30,6 +31,7 @@ export default {
           .then((ret) => {
             commit('setToken', ret.token)
             router.push('/')
+            setTimeStamp()
             resolve()
           })
           .catch((err) => {
