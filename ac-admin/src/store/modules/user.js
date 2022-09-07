@@ -1,5 +1,5 @@
 import md5 from 'md5'
-import { login } from '@/api/sys'
+import { login, getUserInfo } from '@/api/sys'
 import { getItem, setItem } from '@/utils/storage'
 import { TOKEN } from '@/constant/index'
 import router from '@/router'
@@ -7,12 +7,16 @@ import router from '@/router'
 export default {
   namespaced: true,
   state: () => ({
-    token: getItem(TOKEN) || ''
+    token: getItem(TOKEN) || '',
+    userInfo: {}
   }),
   mutations: {
     setToken(state, token) {
       state.token = token
       setItem(TOKEN, token)
+    },
+    setUserInfo(state, userInfo) {
+      state.userInfo = userInfo
     }
   },
   actions: {
@@ -32,6 +36,11 @@ export default {
             reject(err)
           })
       })
+    },
+    async getUserInfo({ commit }) {
+      const ret = await getUserInfo()
+      commit('setUserInfo', ret)
+      return ret
     }
   }
 }

@@ -1,3 +1,4 @@
+import store from '@/store'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
@@ -6,10 +7,19 @@ const service = axios.create({
   timeout: 5000
 })
 
-service.interceptors.request.use((config) => {
-  config.headers.icode = '34785B46B360B444'
-  return config
-})
+service.interceptors.request.use(
+  (config) => {
+    // 注入 token
+    if (store.getters.token) {
+      config.headers.Authorization = `Bearer ${store.getters.token}`
+    }
+    config.headers.icode = '34785B46B360B444'
+    return config
+  },
+  (error) => {
+    return Promise.reject(error)
+  }
+)
 
 service.interceptors.response.use(
   (response) => {
