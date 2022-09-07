@@ -23,7 +23,7 @@ export default {
           password: md5(password)
         })
           .then((ret) => {
-            commit('setToken', ret.data.data.token)
+            commit('setToken', ret.token)
             resolve()
           })
           .catch((err) => {
