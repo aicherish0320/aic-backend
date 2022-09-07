@@ -8,6 +8,11 @@ const publicRotes = [
     path: '/login',
     component: () =>
       import(/*webpackChunkName: 'loginView'*/ '@/views/login/index.vue')
+  },
+  {
+    path: '/',
+    component: () =>
+      import(/*webpackChunkName: 'layoutView'*/ '@/layout/index.vue')
   }
 ]
 

@@ -2,6 +2,7 @@ import md5 from 'md5'
 import { login } from '@/api/sys'
 import { getItem, setItem } from '@/utils/storage'
 import { TOKEN } from '@/constant/index'
+import router from '@/router'
 
 export default {
   namespaced: true,
@@ -24,6 +25,7 @@ export default {
         })
           .then((ret) => {
             commit('setToken', ret.token)
+            router.push('/')
             resolve()
           })
           .catch((err) => {
