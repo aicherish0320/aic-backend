@@ -1,6 +1,12 @@
 module.exports = {
   // 表示当前目录为根目录，ESLint 规则将被限制到该目录下
   root: true,
+  globals: {
+    defineProps: 'readonly',
+    defineEmits: 'readonly',
+    defineExpose: 'readonly',
+    withDefaults: 'readonly'
+  },
   // env 表示启用 ESLint 检测的环境
   env: {
     // 在 node 环境下启动 ESLint 检测

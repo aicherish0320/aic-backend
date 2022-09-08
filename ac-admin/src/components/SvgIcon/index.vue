@@ -12,7 +12,7 @@
   </svg>
 </template>
 <script setup>
-import { computed, defineProps } from 'vue'
+import { computed } from 'vue'
 import { isExternal as external } from '@/utils/validate'
 
 const props = defineProps({
