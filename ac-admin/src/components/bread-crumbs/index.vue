@@ -11,7 +11,28 @@
   </el-breadcrumb>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+
+// 生成数组数据
+const breadcrumbData = ref([])
+const getBreadcrumbData = () => {
+  breadcrumbData.value = route.matched.filter((r) => r.meta && r.meta.title)
+}
+
+// 监听路由变化
+const route = useRoute()
+watch(
+  route,
+  () => {
+    getBreadcrumbData()
+  },
+  {
+    immediate: true
+  }
+)
+</script>
 
 <style lang="scss" scoped>
 .breadcrumb {
