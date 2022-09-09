@@ -7,7 +7,7 @@
           <el-avatar
             shape="square"
             :size="40"
-            :src="$store.getters.userInfo.avatar"
+            src="https://aic-lego.oss-cn-hangzhou.aliyuncs.com/editor-uploads/kj.jpeg"
           >
           </el-avatar>
           <i class="el-icon-s-tools"></i>
