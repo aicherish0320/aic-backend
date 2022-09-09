@@ -2,7 +2,7 @@
   <div>
     <div class="logo-container">
       <el-avatar
-        size="44"
+        :size="logoHeight"
         shape="square"
         src="https://aic-lego.oss-cn-hangzhou.aliyuncs.com/editor-uploads/kj.jpeg"
       ></el-avatar>
@@ -16,11 +16,13 @@
 
 <script setup>
 import SidebarMenu from './SidebarMenu.vue'
+
+const logoHeight = 44
 </script>
 
 <style lang="scss" scoped>
 .logo-container {
-  height: 44px;
+  height: v-bind(logoHeight) px;
   padding: 10px 0 22px 0;
   display: flex;
   align-items: center;
