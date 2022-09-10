@@ -6,6 +6,7 @@
     <BreadCrumbs class="breadcrumb-container"></BreadCrumbs>
 
     <div class="right-menu">
+      <ThemeSelect class="right-menu-item hover-effect"></ThemeSelect>
       <LangSelect class="right-menu-item hover-effect"></LangSelect>
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
@@ -42,6 +43,7 @@ import { useStore } from 'vuex'
 import Hamburger from '@/components/hamburger/index.vue'
 import BreadCrumbs from '@/components/bread-crumbs/index.vue'
 import LangSelect from '@/components/lang-select/index.vue'
+import ThemeSelect from '@/components/theme-select/index.vue'
 
 const store = useStore()
 const logout = () => {
