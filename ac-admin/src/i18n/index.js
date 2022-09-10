@@ -16,12 +16,14 @@ const messages = {
   }
 }
 
-const locale = store.getters.language
+function getLanguage() {
+  return store?.getters?.language
+}
 
 const i18n = createI18n({
   legacy: false,
   globalInjection: true,
-  locale,
+  locale: getLanguage(),
   messages
 })
 
