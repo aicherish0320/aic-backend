@@ -30,29 +30,36 @@
 import Fuse from 'fuse.js'
 import { filterRoutes } from '@/utils/route'
 import { generateRoutes } from './FuseData.js'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { watchSwitchLang } from '@/utils/i18n.js'
 
 const router = useRouter()
-const searchPool = computed(() => {
+let searchPool = computed(() => {
   const fRoutes = filterRoutes(router.getRoutes())
   return generateRoutes(fRoutes)
 })
 
-const fuse = new Fuse(searchPool.value, {
-  shouldSort: true,
-  minMatchCharLength: 1,
-  keys: [
-    {
-      name: 'title',
-      weight: 0.7
-    },
-    {
-      name: 'path',
-      weight: 0.3
-    }
-  ]
-})
+let fuse
+
+const initFuse = (searchPool) => {
+  fuse = new Fuse(searchPool, {
+    shouldSort: true,
+    minMatchCharLength: 1,
+    keys: [
+      {
+        name: 'title',
+        weight: 0.7
+      },
+      {
+        name: 'path',
+        weight: 0.3
+      }
+    ]
+  })
+}
+
+initFuse(searchPool.value)
 
 const isShow = ref(false)
 const search = ref('')
@@ -73,6 +80,31 @@ const querySearch = (query) => {
 const onSelectChange = (value) => {
   router.push(value.path)
 }
+
+const headerSearchSelectRef = ref(null)
+const onClose = () => {
+  headerSearchSelectRef.value && headerSearchSelectRef.value.blur()
+  isShow.value = false
+  searchOptions.value = []
+}
+watch(isShow, (val) => {
+  console.log('isShow >>> ', isShow)
+
+  if (val) {
+    headerSearchSelectRef.value.focus()
+    document.body.addEventListener('click', onClose)
+  } else {
+    document.body.removeEventListener('click', onClose)
+  }
+})
+
+watchSwitchLang(() => {
+  searchPool = computed(() => {
+    const fRoutes = filterRoutes(router.getRoutes())
+    return generateRoutes(fRoutes)
+  })
+  initFuse(searchPool.value)
+})
 </script>
 
 <style lang="scss" scoped>
