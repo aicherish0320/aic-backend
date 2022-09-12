@@ -2,7 +2,7 @@
   <div class="tags-view-container">
     <div class="tags-view-wrapper">
       <router-link
-        v-for="tag in $store.getters.tagsViewList"
+        v-for="(tag, index) in $store.getters.tagsViewList"
         :key="tag.fullPath"
         class="tags-view-item"
         :class="isActive(tag) ? 'active' : ''"
@@ -11,6 +11,7 @@
           backgroundColor: isActive(tag) ? $store.getters.cssVar.menuBg : '',
           borderColor: isActive(tag) ? $store.getters.cssVar.menuBg : ''
         }"
+        @contextmenu.prevent="openMenu($event, index)"
       >
         {{ tag.title }}
         <svg-icon
@@ -19,12 +20,20 @@
           @click.prevent.stop="onCloseClick(index)"
         ></svg-icon>
       </router-link>
+
+      <ContextMenu
+        v-show="visible"
+        :index="selectIndex"
+        :style="menuStyle"
+      ></ContextMenu>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import ContextMenu from './ContextMenu'
 
 const route = useRoute()
 
@@ -33,6 +42,22 @@ const isActive = (tag) => {
 }
 
 const onCloseClick = () => {}
+
+const visible = ref(false)
+const menuStyle = ref({
+  left: 0,
+  top: 0
+})
+const openMenu = (e, index) => {
+  const { x, y } = e
+  menuStyle.value.left = x + 'px'
+  menuStyle.value.top = y + 'px'
+
+  selectIndex.value = index
+  visible.value = true
+}
+
+const selectIndex = ref(0)
 </script>
 
 <style lang="scss" scoped>
