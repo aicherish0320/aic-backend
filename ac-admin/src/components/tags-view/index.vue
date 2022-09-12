@@ -33,15 +33,24 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 import ContextMenu from './ContextMenu'
 
+const store = useStore()
 const route = useRoute()
 
 const isActive = (tag) => {
   return tag.path === route.path
 }
-
-const onCloseClick = () => {}
+/**
+ * 点击关闭 tag
+ */
+const onCloseClick = () => {
+  store.commit('app/removeTagsView', {
+    type: 'index',
+    index: selectIndex.value
+  })
+}
 
 const visible = ref(false)
 const menuStyle = ref({
