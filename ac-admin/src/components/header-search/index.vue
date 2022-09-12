@@ -88,8 +88,6 @@ const onClose = () => {
   searchOptions.value = []
 }
 watch(isShow, (val) => {
-  console.log('isShow >>> ', isShow)
-
   if (val) {
     headerSearchSelectRef.value.focus()
     document.body.addEventListener('click', onClose)

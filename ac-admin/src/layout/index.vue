@@ -10,6 +10,8 @@
     <div class="main-container">
       <div class="fixed-header">
         <Navbar></Navbar>
+        <!-- tags -->
+        <TagsView></TagsView>
       </div>
       <AppMain></AppMain>
     </div>
@@ -20,6 +22,7 @@
 import Navbar from './components/Navbar.vue'
 import Sidebar from './components/sidebar/index.vue'
 import AppMain from './components/AppMain.vue'
+import TagsView from '@/components/tags-view/index.vue'
 </script>
 
 <style lang="scss" scoped>

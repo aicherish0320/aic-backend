@@ -9,3 +9,5 @@ export const LANG = 'ac_admin_language'
 export const MAIN_COLOR = 'ac_admin_mainColor'
 // 默认主题色
 export const DEFAULT_COLOR = '#409eff'
+// tags
+export const TAGS_VIEW = 'ac_admin_tagsView'

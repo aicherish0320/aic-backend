@@ -102,7 +102,7 @@
 - 动态换肤
 - screenfull
 - headerSearch
-- tagView
+- tagsView
 - guide
 
 ### 国际化实现原理
@@ -135,3 +135,5 @@
 headerSearch 指 页面搜索
 
 headerSearch 是复杂后台系统中非常常见的一个功能，它可以：在指定搜索框中对当前应用中所有页面进行检索，以 select 的形式展示出来被检索的页面，已达到快速进入的目的
+
+### tagsView
