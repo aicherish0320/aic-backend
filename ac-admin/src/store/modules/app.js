@@ -37,13 +37,13 @@ export default {
       if (payload.type === 'index') {
         state.tagsViewList.splice(payload.index, 1)
       } else if (payload.type === 'other') {
-        // 之前
-        state.tagsViewList.splice(0, payload.index)
         // 之后
         state.tagsViewList.splice(
           payload.index + 1,
           state.tagsViewList.length - payload.index + 1
         )
+        // 之前
+        state.tagsViewList.splice(0, payload.index)
       } else if (payload.type === 'right') {
         state.tagsViewList.splice(
           payload.index + 1,

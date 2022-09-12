@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import ContextMenu from './ContextMenu'
@@ -67,6 +67,17 @@ const openMenu = (e, index) => {
 }
 
 const selectIndex = ref(0)
+
+const closeMenu = () => {
+  visible.value = false
+}
+watch(visible, (val) => {
+  if (val) {
+    document.body.addEventListener('click', closeMenu)
+  } else {
+    document.body.removeEventListener('click', closeMenu)
+  }
+})
 </script>
 
 <style lang="scss" scoped>
