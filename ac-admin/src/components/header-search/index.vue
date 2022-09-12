@@ -27,6 +27,7 @@
 </template>
 
 <script setup>
+import Fuse from 'fuse.js'
 import { filterRoutes, generateMenus } from '@/utils/route'
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
@@ -48,6 +49,21 @@ const onShowClick = () => {
 const querySearch = () => {}
 
 const onSelectChange = () => {}
+
+new Fuse(searchPool, {
+  shouldSort: true,
+  minMatchCharLength: 1,
+  keys: [
+    {
+      name: 'title',
+      weight: 0.7
+    },
+    {
+      name: 'path',
+      weight: 0.3
+    }
+  ]
+})
 </script>
 
 <style lang="scss" scoped>
