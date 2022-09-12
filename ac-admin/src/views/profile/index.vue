@@ -1,19 +1,36 @@
 <template>
-  <el-row class="mb-4">
-    <el-button type="primary">Primary</el-button>
-  </el-row>
-  <div>
-    {{ $t('msg.test') }}
+  <div class="my-container">
+    <el-row>
+      <el-col :span="6">
+        <ProjectCard class="project-card"></ProjectCard>
+      </el-col>
+      <el-col :span="18">
+        <el-card>
+          <el-tabs v-model="activeName">
+            <el-tab-pane :label="$t('msg.profile.feature')">
+              <Feature></Feature>
+            </el-tab-pane>
+            <el-tab-pane :label="$t('msg.profile.chapter')">
+              <Chapter></Chapter>
+            </el-tab-pane>
+            <el-tab-pane :label="$t('msg.profile.author')">
+              <Author></Author>
+            </el-tab-pane>
+          </el-tabs>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
-
-  <el-pagination
-    :page-size="100"
-    :small="small"
-    layout="total, prev, pager, next"
-    :total="1000"
-  />
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import ProjectCard from './components/ProjectCard.vue'
+import Feature from './components/Feature.vue'
+import Chapter from './components/Chapter.vue'
+import Author from './components/Author.vue'
+
+const activeName = ref('feature')
+</script>
 
 <style lang="scss" scoped></style>
