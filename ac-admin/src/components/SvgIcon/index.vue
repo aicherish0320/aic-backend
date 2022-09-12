@@ -1,11 +1,11 @@
 <template>
-  <!-- 2. 显示外部图标 -->
   <div
     v-if="isExternal"
     :style="styleExternalIcon"
     class="svg-external-icon svg-icon"
     :class="className"
   ></div>
+  <!-- 2. 显示外部图标 -->
   <!-- 1. 显示内部图标 -->
   <svg v-else class="svg-icon" :class="className" aria-hidden="true">
     <use :xlink:href="iconName" />

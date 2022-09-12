@@ -6,7 +6,7 @@
     <BreadCrumbs class="breadcrumb-container"></BreadCrumbs>
 
     <div class="right-menu">
-      <Guide></Guide>
+      <Guide class="right-menu-item hover-effect"></Guide>
       <HeaderSearch class="right-menu-item hover-effect"></HeaderSearch>
       <Screenful class="right-menu-item hover-effect"></Screenful>
       <ThemeSelect class="right-menu-item hover-effect"></ThemeSelect>
