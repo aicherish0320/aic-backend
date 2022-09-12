@@ -27,7 +27,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { filterRoutes, generateMenus } from '@/utils/route'
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const searchPool = computed(() => {
+  const fRoutes = filterRoutes(router.getRoutes())
+  return generateMenus(fRoutes)
+})
+console.log('searchPool >>> ', searchPool.value)
 
 const isShow = ref(false)
 const search = ref('')
