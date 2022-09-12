@@ -24,6 +24,10 @@ export default {
         state.tagsViewList.push(tag)
         setItem(TAGS_VIEW, state.tagsViewList)
       }
+    },
+    changeTagsView(state, { index, tag }) {
+      state.tagsViewList[index] = tag
+      setItem(TAGS_VIEW, state.tagsViewList)
     }
   }
 }
