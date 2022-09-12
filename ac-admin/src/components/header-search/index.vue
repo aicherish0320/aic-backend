@@ -28,29 +28,18 @@
 
 <script setup>
 import Fuse from 'fuse.js'
-import { filterRoutes, generateMenus } from '@/utils/route'
+import { filterRoutes } from '@/utils/route'
+import { generateRoutes } from './FuseData.js'
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const searchPool = computed(() => {
   const fRoutes = filterRoutes(router.getRoutes())
-  return generateMenus(fRoutes)
+  return generateRoutes(fRoutes)
 })
-console.log('searchPool >>> ', searchPool.value)
 
-const isShow = ref(false)
-const search = ref('')
-
-const onShowClick = () => {
-  isShow.value = !isShow.value
-}
-
-const querySearch = () => {}
-
-const onSelectChange = () => {}
-
-new Fuse(searchPool, {
+const fuse = new Fuse(searchPool.value, {
   shouldSort: true,
   minMatchCharLength: 1,
   keys: [
@@ -64,6 +53,19 @@ new Fuse(searchPool, {
     }
   ]
 })
+
+const isShow = ref(false)
+const search = ref('')
+
+const onShowClick = () => {
+  isShow.value = !isShow.value
+}
+
+const querySearch = (query) => {
+  console.log(fuse.search(query))
+}
+
+const onSelectChange = () => {}
 </script>
 
 <style lang="scss" scoped>
