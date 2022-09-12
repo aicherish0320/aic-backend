@@ -13,7 +13,7 @@
       ></el-color-picker>
     </div>
     <template #footer>
-      <el-button @click="close">{{ $t('msg.universal.cancel') }}</el-button>
+      <el-button @click="closed">{{ $t('msg.universal.cancel') }}</el-button>
       <el-button type="primary" @click="confirm">{{
         $t('msg.universal.confirm')
       }}</el-button>
@@ -23,6 +23,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useStore } from 'vuex'
 
 defineProps({
   modelValue: {
@@ -50,8 +51,10 @@ const predefineColors = [
   '#c7158577'
 ]
 
+const store = useStore()
+
 // 默认色值
-const mColor = ref('#00ff00')
+const mColor = ref(store.getters.mainColor)
 
 /**
  * 关闭
@@ -65,14 +68,16 @@ const closed = () => {
  * 2. 保存最新的主题色
  * 3. 关闭 dialog
  */
+
 const confirm = async () => {
+  store.commit('theme/setMainColor', mColor.value)
   // 3. 关闭 dialog
   closed()
 }
 </script>
 
 <style lang="scss" scoped>
-.center {
+.content {
   text-align: center;
   .title {
     margin-bottom: 12px;
