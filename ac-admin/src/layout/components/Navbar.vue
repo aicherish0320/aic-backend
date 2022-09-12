@@ -6,6 +6,7 @@
     <BreadCrumbs class="breadcrumb-container"></BreadCrumbs>
 
     <div class="right-menu">
+      <Screenful class="right-menu-item hover-effect"></Screenful>
       <ThemeSelect class="right-menu-item hover-effect"></ThemeSelect>
       <LangSelect class="right-menu-item hover-effect"></LangSelect>
       <!-- 头像 -->
@@ -44,6 +45,7 @@ import Hamburger from '@/components/hamburger/index.vue'
 import BreadCrumbs from '@/components/bread-crumbs/index.vue'
 import LangSelect from '@/components/lang-select/index.vue'
 import ThemeSelect from '@/components/theme-select/index.vue'
+import Screenful from '@/components/screenful/index.vue'
 
 const store = useStore()
 const logout = () => {
