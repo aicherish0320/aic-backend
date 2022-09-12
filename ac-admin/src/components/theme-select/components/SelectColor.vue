@@ -22,6 +22,7 @@
 </template>
 
 <script setup>
+import { generateNewStyle, writeNewStyle } from '@/utils/theme'
 import { ref } from 'vue'
 import { useStore } from 'vuex'
 
@@ -70,6 +71,9 @@ const closed = () => {
  */
 
 const confirm = async () => {
+  const newStyle = await generateNewStyle(mColor.value)
+  writeNewStyle(newStyle)
+
   store.commit('theme/setMainColor', mColor.value)
   // 3. 关闭 dialog
   closed()
