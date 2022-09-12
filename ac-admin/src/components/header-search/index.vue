@@ -17,10 +17,10 @@
       @change="onSelectChange"
     >
       <el-option
-        v-for="option in 5"
-        :key="option"
-        :babel="option"
-        :value="option"
+        v-for="option in searchOptions"
+        :key="option.item.path"
+        :label="option.item.title.join(' > ')"
+        :value="option.item"
       ></el-option>
     </el-select>
   </div>
@@ -61,11 +61,18 @@ const onShowClick = () => {
   isShow.value = !isShow.value
 }
 
+const searchOptions = ref([])
 const querySearch = (query) => {
-  console.log(fuse.search(query))
+  if (query) {
+    searchOptions.value = fuse.search(query)
+  } else {
+    searchOptions.value = []
+  }
 }
 
-const onSelectChange = () => {}
+const onSelectChange = (value) => {
+  router.push(value.path)
+}
 </script>
 
 <style lang="scss" scoped>
