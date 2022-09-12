@@ -6,9 +6,9 @@ import color from 'css-color-function'
 /**
  * 把生成的样式表写入到 style 中
  */
-export const writeNewStyle = (newStyle) => {
+export const writeNewStyle = (elNewStyle) => {
   const style = document.createElement('style')
-  style.innerText = newStyle
+  style.innerText = elNewStyle
   document.head.appendChild(style)
 }
 /**
@@ -29,17 +29,19 @@ export const generateNewStyle = async (primaryColor) => {
 
   return cssText
 }
+
+/**
+ * 根据主题色 生成色值表
+ */
 export const generateColors = (primary) => {
   if (!primary) return
   const colors = {
     primary
   }
-
   Object.keys(formula).forEach((key) => {
     const value = formula[key].replace(/primary/g, primary)
     colors[key] = '#' + rgbHex(color.convert(value))
   })
-
   return colors
 }
 
@@ -61,6 +63,7 @@ const getStyleTemplate = (data) => {
   const colorMap = {
     '#3a8ee6': 'shade-1',
     '#409eff': 'primary',
+    '#337ecc': 'primary',
     '#53a8ff': 'light-1',
     '#66b1ff': 'light-2',
     '#79bbff': 'light-3',
@@ -71,11 +74,10 @@ const getStyleTemplate = (data) => {
     '#d9ecff': 'light-8',
     '#ecf5ff': 'light-9'
   }
-
+  // 根据默认色值为要替换的色值打上标记
   Object.keys(colorMap).forEach((key) => {
     const value = colorMap[key]
     data = data.replace(new RegExp(key, 'ig'), value)
   })
-
   return data
 }
