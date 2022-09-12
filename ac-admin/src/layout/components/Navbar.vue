@@ -3,7 +3,10 @@
     <!-- 汉堡 -->
     <Hamburger class="hamburger-container"></Hamburger>
     <!-- 面包屑 -->
-    <BreadCrumbs class="breadcrumb-container"></BreadCrumbs>
+    <BreadCrumbs
+      id="guide-breadcrumb"
+      class="breadcrumb-container"
+    ></BreadCrumbs>
 
     <div class="right-menu">
       <Guide class="right-menu-item hover-effect"></Guide>
