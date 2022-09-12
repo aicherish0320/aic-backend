@@ -33,4 +33,10 @@ import Author from './components/Author.vue'
 const activeName = ref('feature')
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.my-container {
+  .user-card {
+    margin-right: 20px;
+  }
+}
+</style>
