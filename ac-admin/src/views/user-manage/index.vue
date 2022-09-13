@@ -78,7 +78,7 @@
         :current-page="page"
         :page-size="size"
         :page-sizes="[2, 5, 10, 20]"
-        layout="total,sizers,prev,pager,next,jumper"
+        layout="total,sizes,prev,pager,next,jumper"
         :total="total"
       ></el-pagination>
     </el-card>
@@ -88,7 +88,7 @@
 <script setup>
 import { getUserManageList } from '@/api/userManage'
 import { watchSwitchLang } from '@/utils/i18n'
-import { ref } from 'vue'
+import { onActivated, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const tableData = ref([])
@@ -114,14 +114,22 @@ const onShowClick = () => {}
 const onShowRoleClick = () => {}
 const onRemoveClick = () => {}
 
-const handleSizeChange = () => {}
-const handleCurrentChange = () => {}
+const handleSizeChange = (currentSize) => {
+  size.value = currentSize
+  getListData()
+}
+const handleCurrentChange = (currentPage) => {
+  page.value = currentPage
+  getListData()
+}
 
 const router = useRouter()
 const onImportExcelClick = () => {
   router.push('/user/import')
 }
 const onToExcelClick = () => {}
+
+onActivated(getListData)
 </script>
 
 <style lang="scss" scoped>
