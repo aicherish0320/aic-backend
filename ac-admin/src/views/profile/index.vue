@@ -2,10 +2,7 @@
   <div class="my-container">
     <el-row>
       <el-col :span="6">
-        <ProjectCard
-          class="project-card"
-          :features="featuresData"
-        ></ProjectCard>
+        <ProjectCard class="user-card" :features="featureData"></ProjectCard>
       </el-col>
       <el-col :span="18">
         <el-card>
