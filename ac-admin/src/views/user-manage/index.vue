@@ -56,18 +56,12 @@
               @click="onShowClick(row._id)"
               >{{ $t('msg.excel.show') }}</el-button
             >
-            <el-button
-              type="info"
-              size="small"
-              @click="onShowRoleClick(row._id)"
-              >{{ $t('msg.excel.showRole') }}</el-button
-            >
-            <el-button
-              type="danger"
-              size="small"
-              @click="onRemoveClick(row._id)"
-              >{{ $t('msg.excel.remove') }}</el-button
-            >
+            <el-button type="info" size="small" @click="onShowRoleClick(row)">{{
+              $t('msg.excel.showRole')
+            }}</el-button>
+            <el-button type="danger" size="small" @click="onRemoveClick(row)">{{
+              $t('msg.excel.remove')
+            }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -86,15 +80,17 @@
 </template>
 
 <script setup>
-import { getUserManageList } from '@/api/userManage'
+import { deleteUser, getUserManageList } from '@/api/userManage'
 import { watchSwitchLang } from '@/utils/i18n'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { onActivated, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 
 const tableData = ref([])
 const total = ref(0)
 const page = ref(1)
-const size = ref(5)
+const size = ref(2)
 
 // 获取数据的方法
 const getListData = async () => {
@@ -112,7 +108,23 @@ watchSwitchLang(getListData)
 
 const onShowClick = () => {}
 const onShowRoleClick = () => {}
-const onRemoveClick = () => {}
+
+const i18n = useI18n()
+const onRemoveClick = (row) => {
+  ElMessageBox.confirm(
+    i18n.t('msg.excel.dialogTitle1') +
+      row.username +
+      i18n.t('msg.excel.dialogTitle2'),
+    {
+      type: 'warning'
+    }
+  ).then(async () => {
+    await deleteUser(row._id)
+    ElMessage.success(i18n.t('msg.excel.removeSuccess'))
+    // 重新渲染数据
+    getListData()
+  })
+}
 
 const handleSizeChange = (currentSize) => {
   size.value = currentSize
