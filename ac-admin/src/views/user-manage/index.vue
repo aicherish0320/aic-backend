@@ -94,7 +94,7 @@ import { useRouter } from 'vue-router'
 const tableData = ref([])
 const total = ref(0)
 const page = ref(1)
-const size = ref(1)
+const size = ref(5)
 
 // 获取数据的方法
 const getListData = async () => {

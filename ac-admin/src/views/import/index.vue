@@ -3,10 +3,35 @@
 </template>
 
 <script setup>
+import { userBatchImport } from '@/api/userManage'
 import UploadExcel from '@/components/upload-excel/index.vue'
+import { ElMessage } from 'element-plus'
+import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
+import { USER_RELATIONS } from './utils'
 
-const onSuccess = (excelData) => {
-  console.log('excelData >>> ', excelData)
+const router = useRouter()
+const i18n = useI18n()
+
+const onSuccess = async ({ results }) => {
+  const updateData = generateData(results)
+  await userBatchImport(updateData)
+  ElMessage.success(results.length + i18n.t('msg.excel.importSuccess'))
+  router.push('/user/manage')
+}
+
+const generateData = (results) => {
+  const arr = []
+
+  results.forEach((item) => {
+    const userInfo = {}
+    Object.keys(item).forEach((key) => {
+      userInfo[USER_RELATIONS[key]] = item[key]
+    })
+    arr.push(userInfo)
+  })
+
+  return arr
 }
 </script>
 
