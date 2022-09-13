@@ -76,6 +76,8 @@
         :total="total"
       ></el-pagination>
     </el-card>
+
+    <Export2Excel v-model="exportToExcelVisible"></Export2Excel>
   </div>
 </template>
 
@@ -86,6 +88,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { onActivated, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import Export2Excel from './Export2Excel.vue'
 
 const tableData = ref([])
 const total = ref(0)
@@ -139,9 +142,13 @@ const router = useRouter()
 const onImportExcelClick = () => {
   router.push('/user/import')
 }
-const onToExcelClick = () => {}
 
 onActivated(getListData)
+
+const exportToExcelVisible = ref(false)
+const onToExcelClick = () => {
+  exportToExcelVisible.value = true
+}
 </script>
 
 <style lang="scss" scoped>
