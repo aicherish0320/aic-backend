@@ -21,6 +21,9 @@ service.interceptors.request.use(
       config.headers.Authorization = `Bearer ${store.getters.token}`
     }
     config.headers.icode = '34785B46B360B444'
+
+    config.headers['Accept-Language'] = store.getters.language
+
     return config
   },
   (error) => {

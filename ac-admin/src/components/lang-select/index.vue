@@ -43,7 +43,6 @@ const language = computed(() => store.getters.language)
 
 const i18n = useI18n()
 const handleSetLanguage = (lang) => {
-  console.log('lang >>> ', lang)
   i18n.locale.value = lang
   store.commit('app/setLanguage', lang)
   ElMessage.success(i18n.t('msg.toast.switchLangSuccess'))
