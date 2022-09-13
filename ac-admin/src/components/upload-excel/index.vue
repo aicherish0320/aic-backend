@@ -76,7 +76,7 @@ const readerData = (rawFile) => {
       const header = getHeaderRow(worksheet)
       const results = utils.sheet_to_json(worksheet)
       generateData({ header, results })
-      loading.value = true
+      loading.value = false
       resolve()
     }
     reader.readAsArrayBuffer(rawFile)
