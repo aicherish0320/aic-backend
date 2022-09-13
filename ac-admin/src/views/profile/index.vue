@@ -8,13 +8,13 @@
         <el-card>
           <el-tabs v-model="activeName">
             <el-tab-pane :label="$t('msg.profile.feature')">
-              <Feature></Feature>
+              <Feature :features="featureData" name="feature"></Feature>
             </el-tab-pane>
             <el-tab-pane :label="$t('msg.profile.chapter')">
-              <Chapter></Chapter>
+              <Chapter name="chapter"></Chapter>
             </el-tab-pane>
             <el-tab-pane :label="$t('msg.profile.author')">
-              <Author></Author>
+              <Author name-author></Author>
             </el-tab-pane>
           </el-tabs>
         </el-card>
