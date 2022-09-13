@@ -6,10 +6,12 @@ import i18n from './i18n'
 import '@/styles/index.scss'
 import installElementPlus from './plugins/element'
 import installIcons from '@/icons/index'
+import installFilter from '@/filters'
 import './permission'
 const app = createApp(App)
 
 installElementPlus(app)
-app.use(installIcons)
+installFilter(app)
+installIcons(app)
 
 app.use(i18n).use(store).use(router).mount('#app')
