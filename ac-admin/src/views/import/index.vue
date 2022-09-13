@@ -1,7 +1,9 @@
 <template>
-  <div>导入</div>
+  <UploadExcel></UploadExcel>
 </template>
 
-<script setup></script>
+<script setup>
+import UploadExcel from '@/components/upload-excel/index.vue'
+</script>
 
 <style lang="scss" scoped></style>

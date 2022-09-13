@@ -89,6 +89,7 @@
 import { getUserManageList } from '@/api/userManage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const tableData = ref([])
 const total = ref(0)
@@ -115,6 +116,12 @@ const onRemoveClick = () => {}
 
 const handleSizeChange = () => {}
 const handleCurrentChange = () => {}
+
+const router = useRouter()
+const onImportExcelClick = () => {
+  router.push('/user/import')
+}
+const onToExcelClick = () => {}
 </script>
 
 <style lang="scss" scoped>
