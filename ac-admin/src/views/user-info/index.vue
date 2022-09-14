@@ -1,11 +1,15 @@
 <template>
   <div class="user-info-container">
     <el-card class="print-box">
-      <el-button type="primary">{{ $t('msg.userInfo.print') }}</el-button>
+      <el-button type="primary" :loading="printLoading" v-print="printObj">{{
+        $t('msg.userInfo.print')
+      }}</el-button>
     </el-card>
     <el-card>
       <div id="userInfoBox" class="user-info-box">
+        <!-- 标题 -->
         <h2 class="title">{{ $t('msg.userInfo.title') }}</h2>
+        <!-- 头部 -->
         <div class="header">
           <el-descriptions :column="2" border>
             <el-descriptions-item :label="$t('msg.userInfo.name')">
@@ -26,7 +30,7 @@
             <el-descriptions-item :label="$t('msg.userInfo.date')">
               {{ $filters.dateFilter(detailData.openTime) }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('msg.userInfo.remark')">
+            <el-descriptions-item :label="$t('msg.userInfo.remark')" :span="2">
               <el-tag
                 class="remark"
                 size="small"
@@ -45,6 +49,7 @@
             preview-src-list="https://aic-lego.oss-cn-hangzhou.aliyuncs.com/editor-uploads/kj.jpeg"
           ></el-image>
         </div>
+        <!-- 内容 -->
         <div class="body">
           <el-descriptions direction="vertical" :column="1" border>
             <el-descriptions-item :label="$t('msg.userInfo.experience')">
@@ -60,8 +65,15 @@
                 </li>
               </ul>
             </el-descriptions-item>
+            <el-descriptions-item :label="$t('msg.userInfo.major')">
+              {{ detailData.major }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('msg.userInfo.glory')">
+              {{ detailData.glory }}
+            </el-descriptions-item>
           </el-descriptions>
         </div>
+        <!-- 尾部 -->
         <div class="foot">{{ $t('msg.userInfo.foot') }}</div>
       </div>
     </el-card>
@@ -87,6 +99,18 @@ const getUserDetail = async () => {
 getUserDetail()
 
 watchSwitchLang(getUserDetail)
+
+const printLoading = ref(false)
+const printObj = {
+  id: 'userInfoBox',
+  popTitle: 'aic-backend-admin',
+  beforeOpenCallback() {
+    printLoading.value = true
+  },
+  openCallback() {
+    printLoading.value = false
+  }
+}
 </script>
 
 <style lang="scss" scoped>
