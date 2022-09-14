@@ -26,6 +26,8 @@ import { getUserManageAllList } from '@/api/userManage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { USER_RELATIONS } from './Export2ExcelConstants'
+import { dateFormat } from '@/utils/date'
 
 defineProps({
   modelValue: {
@@ -45,17 +47,37 @@ watchSwitchLang(() => {
 })
 
 const closed = () => {
+  loading.value = false
   emits('update:modelValue', false)
 }
 
 const loading = ref(false)
 const onConfirm = async () => {
   loading.value = true
-  const allUsers = await getUserManageAllList()
-  console.log('allUsers >>> ', allUsers, allUsers.list)
+  const allUsers = (await getUserManageAllList()).list
 
-  loading.value = false
+  const excel = await import('@/utils/export2Excel')
+  const data = formatJson(USER_RELATIONS, allUsers)
+  excel.export_json_to_excel({
+    header: Object.keys(USER_RELATIONS),
+    data,
+    filename: excelName.value || exportDefaultName,
+    autoWidth: true,
+    bookType: 'xlsx'
+  })
+
   closed()
+}
+
+const formatJson = (headers, rows) => {
+  return rows.map((item) => {
+    return Object.keys(headers).map((key) => {
+      if (headers[key] === 'openTime') {
+        return dateFormat(item[headers[key]])
+      }
+      return item[headers[key]]
+    })
+  })
 }
 </script>
 

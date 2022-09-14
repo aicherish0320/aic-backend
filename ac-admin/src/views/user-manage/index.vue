@@ -88,7 +88,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { onActivated, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
-import Export2Excel from './Export2Excel.vue'
+import Export2Excel from './components/Export2Excel.vue'
 
 const tableData = ref([])
 const total = ref(0)
