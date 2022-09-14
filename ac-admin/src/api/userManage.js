@@ -26,3 +26,9 @@ export const deleteUser = (id) => {
     url: `/user-manage/detele/${id}`
   })
 }
+
+export const userDetail = (id) => {
+  return request({
+    url: `/user-manage/detail/${id}`
+  })
+}

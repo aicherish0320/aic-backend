@@ -109,7 +109,12 @@ getListData()
 
 watchSwitchLang(getListData)
 
-const onShowClick = () => {}
+const router = useRouter()
+
+const onShowClick = (id) => {
+  router.push(`/user/info/${id}`)
+}
+
 const onShowRoleClick = () => {}
 
 const i18n = useI18n()
@@ -138,7 +143,6 @@ const handleCurrentChange = (currentPage) => {
   getListData()
 }
 
-const router = useRouter()
 const onImportExcelClick = () => {
   router.push('/user/import')
 }
