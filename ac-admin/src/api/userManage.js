@@ -7,6 +7,12 @@ export const getUserManageList = (data) => {
   })
 }
 
+export const getUserManageAllList = () => {
+  return request({
+    url: '/user-manage/all-list'
+  })
+}
+
 export const userBatchImport = (data) => {
   return request({
     url: '/user-manage/batch/import',
