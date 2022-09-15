@@ -78,6 +78,11 @@
     </el-card>
 
     <Export2Excel v-model="exportToExcelVisible"></Export2Excel>
+    <Roles
+      v-model="roleDialogVisible"
+      :userId="selectUserId"
+      @updateRole="getListData"
+    ></Roles>
   </div>
 </template>
 
@@ -85,10 +90,11 @@
 import { deleteUser, getUserManageList } from '@/api/userManage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { onActivated, ref } from 'vue'
+import { onActivated, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import Export2Excel from './components/Export2Excel.vue'
+import Roles from './components/Roles.vue'
 
 const tableData = ref([])
 const total = ref(0)
@@ -115,7 +121,12 @@ const onShowClick = (id) => {
   router.push(`/user/info/${id}`)
 }
 
-const onShowRoleClick = () => {}
+const roleDialogVisible = ref(false)
+const selectUserId = ref('')
+const onShowRoleClick = (row) => {
+  roleDialogVisible.value = true
+  selectUserId.value = row._id
+}
 
 const i18n = useI18n()
 const onRemoveClick = (row) => {
@@ -153,6 +164,10 @@ const exportToExcelVisible = ref(false)
 const onToExcelClick = () => {
   exportToExcelVisible.value = true
 }
+
+watch(roleDialogVisible, (val) => {
+  if (!val) selectUserId.value = ''
+})
 </script>
 
 <style lang="scss" scoped>
