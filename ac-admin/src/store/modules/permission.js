@@ -14,8 +14,6 @@ export default {
   actions: {
     filterRoutes({ commit }, menus) {
       const routes = []
-      console.log('menus >>> ', menus)
-
       menus.forEach((key) => {
         // 权限名 与 路由的 name 匹配
         routes.push(...privateRoute.filter((item) => item.name === key))
@@ -24,7 +22,6 @@ export default {
         path: '/:catchAll(.*)',
         redirect: '/404'
       })
-      console.log('routes >>> ', routes)
       commit('setRoutes', routes)
       return routes
     }
