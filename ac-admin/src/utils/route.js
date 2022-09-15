@@ -20,6 +20,7 @@ function isNull(data) {
   if (!data) return true
   if (JSON.stringify(data) === '{}') return true
   if (JSON.stringify(data) === '[]') return true
+  return false
 }
 
 /**
@@ -35,17 +36,15 @@ export const filterRoutes = (routes) => {
 }
 
 /**
- * 根据 routes(filter 之后的) 数据，返回对应的 menu 数据
+ * 根据 routes 数据，返回对应 menu 规则数组
  */
-
 export function generateMenus(routes, basePath = '') {
   const result = []
-
   // 遍历路由表
   routes.forEach((item) => {
-    // 不存在 children && 不存在 meta
+    // 不存在 children && 不存在 meta 直接 return
     if (isNull(item.meta) && isNull(item.children)) return
-    // 存在 children 不存在 meta 进入迭代
+    // 存在 children 不存在 meta，进入迭代
     if (isNull(item.meta) && !isNull(item.children)) {
       result.push(...generateMenus(item.children))
       return
@@ -60,17 +59,18 @@ export function generateMenus(routes, basePath = '') {
         path: routePath,
         children: []
       }
+
+      // icon 与 title 必须全部存在
+      if (route.meta.icon && route.meta.title) {
+        // meta 存在生成 route 对象，放入 arr
+        result.push(route)
+      }
     }
-    // icon 与 title 必须全部存在
-    if (route.meta.icon && route.meta.title) {
-      // meta 存在生成 route 对象，放入 arr
-      result.push(route)
-    }
-    // 存在 children 进入迭代到 children
+
+    // 存在 children 进入迭代到children
     if (item.children) {
       route.children.push(...generateMenus(item.children, route.path))
     }
   })
-
   return result
 }

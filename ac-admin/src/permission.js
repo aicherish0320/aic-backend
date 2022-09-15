@@ -12,7 +12,18 @@ router.beforeEach(async (to, from, next) => {
       // 判断用户资料是否存在
       if (!store.getters.hasUserInfo) {
         try {
-          await store.dispatch('user/getUserInfo')
+          const { permission } = await store.dispatch('user/getUserInfo')
+          // 处理用户权限
+          const filterRoutes = await store.dispatch(
+            'permission/filterRoutes',
+            permission.menus
+          )
+
+          // 循环添加动态路由
+          filterRoutes.forEach((item) => {
+            router.addRoute(item)
+          })
+          return next(to.path)
         } catch (error) {
           console.error(error.message)
         }

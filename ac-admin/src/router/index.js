@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from '@/store'
 import layout from '@/layout/index.vue'
 import userManage from './modules/userManage'
 import roleList from './modules/roleList'
-import permission from '@/store/modules/permission'
+import permission from './modules/permissionList'
 import article from './modules/article'
 import articleCreate from './modules/articleCreate'
 
@@ -163,5 +164,18 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes: publicRotes
 })
+
+export function resetRouter() {
+  if (
+    store.getters.userInfo &&
+    store.getters.userInfo.permission &&
+    store.getters.userInfo.permission.menus
+  ) {
+    const menus = store.getters.userInfo.permission.menus
+    menus.forEach((menu) => {
+      router.removeRoute(menu)
+    })
+  }
+}
 
 export default router
