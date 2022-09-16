@@ -9,12 +9,11 @@
         clearable
       ></el-input>
       <el-tabs v-model="activeName">
-        <el-tab-pane :label="$t('msg.article.markdown')" name="markdown"
-          >1</el-tab-pane
-        ><el-tab-pane :label="$t('msg.article.richText')" name="editor"
-          >2</el-tab-pane
-        ></el-tabs
-      >
+        <el-tab-pane :label="$t('msg.article.markdown')" name="markdown">
+          <MarkDown></MarkDown> </el-tab-pane
+        ><el-tab-pane :label="$t('msg.article.richText')" name="editor">
+          <Editor></Editor> </el-tab-pane
+      ></el-tabs>
     </el-card>
   </div>
 </template>
@@ -23,6 +22,8 @@
 import { articleDetail } from '@/api/article'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import MarkDown from './components/MarkDown.vue'
+import Editor from './components/Editor.vue'
 
 const activeName = ref('markdown')
 const title = ref('')
