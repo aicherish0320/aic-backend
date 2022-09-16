@@ -1,6 +1,7 @@
 import store from '@/store'
 import dayjs from 'dayjs'
 import rt from 'dayjs/plugin/relativeTime'
+import 'dayjs/locale/zh-cn'
 
 const dateFilter = (val, format = 'YYYY-MM-DD') => {
   if (!isNaN(val)) {
